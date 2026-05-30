@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OVA – El Enfoque Sistémico | TGS</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0f1e;
+  --bg2: #0f1628;
+  --card: #131d35;
+  --card2: #1a2540;
+  --accent: #00d4aa;
+  --accent2: #0099ff;
+  --accent3: #ff6b6b;
+  --gold: #ffd166;
+  --text: #e8eaf6;
+  --muted: #8892b0;
+  --border: rgba(0,212,170,0.15);
+  --glow: 0 0 30px rgba(0,212,170,0.2);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.7;overflow-x:hidden;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(10,15,30,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent);letter-spacing:2px;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:500;transition:.3s;letter-spacing:.5px;}
+.nav-links a:hover{color:var(--accent);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--accent);transition:.3s;}
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:60px;left:0;width:100%;background:rgba(10,15,30,0.98);flex-direction:column;padding:1rem 2rem;gap:1rem;}
+  .nav-links.open{display:flex;}
+  .hamburger{display:flex;}
+}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,212,170,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 80% 80%, rgba(0,153,255,0.06) 0%, transparent 60%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,170,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.04) 1px,transparent 1px);background-size:50px 50px;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:50px;padding:.4rem 1.2rem;font-size:.8rem;color:var(--accent);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:2rem;animation:fadeDown .8s ease;}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,7vw,5rem);font-weight:800;line-height:1.05;margin-bottom:1.5rem;animation:fadeUp .9s ease;}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:600px;margin:0 auto 2.5rem;animation:fadeUp 1s ease .1s both;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s ease .2s both;}
+.btn{padding:.8rem 2rem;border-radius:8px;font-weight:600;font-size:.95rem;cursor:pointer;text-decoration:none;transition:.3s;border:none;font-family:'DM Sans',sans-serif;}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,212,170,0.4);}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.hero-cards{display:flex;gap:1rem;margin-top:4rem;flex-wrap:wrap;justify-content:center;animation:fadeUp 1s ease .3s both;}
+.hero-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.5rem;text-align:center;}
+.hero-stat .num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--accent);}
+.hero-stat .lbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+
+/* SECTIONS */
+section{padding:5rem 2rem;}
+.container{max-width:1100px;margin:0 auto;}
+.section-tag{display:inline-block;color:var(--accent);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:1rem;line-height:1.2;}
+.section-sub{color:var(--muted);max-width:600px;margin-bottom:3rem;}
+
+/* CONCEPTOS */
+#conceptos{background:var(--bg2);}
+.concepts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+.concept-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.8rem;transition:.3s;position:relative;overflow:hidden;}
+.concept-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+.concept-card:hover{transform:translateY(-4px);box-shadow:var(--glow);}
+.concept-icon{width:48px;height:48px;background:rgba(0,212,170,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;}
+.concept-card h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--accent);}
+.concept-card p{font-size:.9rem;color:var(--muted);line-height:1.6;}
+
+/* TEORIA */
+#teoria{background:var(--bg);}
+.theory-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+@media(max-width:768px){.theory-layout{grid-template-columns:1fr;}}
+.theory-text h3{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:1rem;color:var(--gold);}
+.theory-text p{color:var(--muted);margin-bottom:1rem;font-size:.95rem;}
+.theory-text blockquote{border-left:3px solid var(--accent);padding-left:1rem;color:var(--muted);font-style:italic;margin:1.5rem 0;font-size:.9rem;}
+.principles-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;}
+.principles-list li{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;display:flex;gap:.75rem;align-items:flex-start;font-size:.9rem;}
+.principles-list li .icon{font-size:1.2rem;flex-shrink:0;margin-top:.1rem;}
+.principles-list li strong{color:var(--accent);display:block;margin-bottom:.2rem;font-family:'Syne',sans-serif;}
+
+/* DIAGRAMA INTERACTIVO */
+#diagrama{background:var(--bg2);}
+.diagram-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;overflow:hidden;}
+.diagram-svg-wrap{width:100%;overflow-x:auto;}
+.diagram-svg-wrap svg{max-width:100%;display:block;margin:0 auto;}
+.diagram-info{margin-top:1.5rem;background:var(--card2);border-radius:12px;padding:1.2rem;font-size:.9rem;color:var(--muted);min-height:80px;transition:.3s;}
+.diagram-info strong{color:var(--accent);}
+
+/* EJEMPLOS */
+#ejemplos{background:var(--bg);}
+.examples-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap;}
+.tab-btn{padding:.6rem 1.2rem;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.9rem;transition:.3s;}
+.tab-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600;}
+.tab-content{display:none;animation:fadeUp .4s ease;}
+.tab-content.active{display:block;}
+.example-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;}
+@media(max-width:600px){.example-card{grid-template-columns:1fr;}}
+.example-card h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--gold);margin-bottom:.75rem;}
+.example-card p{color:var(--muted);font-size:.9rem;margin-bottom:1rem;}
+.example-visual{background:var(--card2);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:.5rem;}
+.ev-row{display:flex;align-items:center;gap:.75rem;font-size:.85rem;}
+.ev-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.tag{display:inline-block;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.2);color:var(--accent);border-radius:6px;padding:.2rem .6rem;font-size:.75rem;font-weight:600;margin:.2rem;}
+
+/* EJERCICIOS */
+#ejercicios{background:var(--bg2);}
+.exercises-grid{display:flex;flex-direction:column;gap:1.5rem;}
+.exercise{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.exercise-header{padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:.2s;}
+.exercise-header:hover{background:var(--card2);}
+.exercise-header h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;}
+.exercise-badge{font-size:.75rem;background:rgba(0,212,170,0.1);color:var(--accent);padding:.2rem .7rem;border-radius:20px;border:1px solid rgba(0,212,170,0.2);}
+.exercise-body{padding:0 1.5rem;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;}
+.exercise-body.open{max-height:600px;padding:1.2rem 1.5rem;}
+.exercise-body p{color:var(--muted);margin-bottom:1rem;font-size:.9rem;}
+.exercise-options{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem;}
+.exercise-options li button{width:100%;text-align:left;padding:.8rem 1rem;background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.9rem;transition:.2s;}
+.exercise-options li button:hover{border-color:var(--accent);color:var(--accent);}
+.exercise-options li button.correct{background:rgba(0,212,170,0.15);border-color:var(--accent);color:var(--accent);}
+.exercise-options li button.wrong{background:rgba(255,107,107,0.1);border-color:var(--accent3);color:var(--accent3);}
+.feedback{padding:.75rem 1rem;border-radius:8px;font-size:.88rem;display:none;margin-top:.5rem;}
+.feedback.show{display:block;}
+.feedback.ok{background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);color:var(--accent);}
+.feedback.fail{background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.3);color:var(--accent3);}
+
+/* JUEGO 1 – CLASIFICA */
+#juego1{background:var(--bg);}
+.game-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;}
+.game-wrap h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:.5rem;}
+.game-wrap .game-desc{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;}
+.game-score-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
+.game-score{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);}
+.game-lives{display:flex;gap:.3rem;}
+.game-lives span{font-size:1.1rem;}
+#g1-card{background:var(--card2);border:2px solid var(--accent);border-radius:16px;padding:2rem;text-align:center;min-height:120px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;}
+#g1-card p{font-size:1.1rem;font-weight:500;}
+.g1-cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.g1-col{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:1rem;}
+.g1-col h4{font-size:.85rem;font-weight:700;margin-bottom.75rem;color:var(--accent);text-align:center;margin-bottom:.75rem;}
+.g1-btn{display:block;width:100%;margin-bottom:.5rem;padding:.6rem;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.9rem;transition:.2s;}
+.g1-btn:hover{border-color:var(--accent);color:var(--accent);}
+#g1-feedback{text-align:center;min-height:40px;padding:.5rem;font-weight:600;font-size:.95rem;}
+#g1-next{display:none;margin:1rem auto 0;width:fit-content;}
+
+/* JUEGO 2 – CONECTA */
+#juego2{background:var(--bg2);}
+.match-game{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+@media(max-width:500px){.match-game{grid-template-columns:1fr;}}
+.match-col h4{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:var(--gold);margin-bottom:.75rem;text-align:center;}
+.match-item{padding:.75rem 1rem;background:var(--card);border:2px solid var(--border);border-radius:10px;cursor:pointer;font-size:.9rem;margin-bottom:.5rem;transition:.3s;text-align:center;}
+.match-item.selected{border-color:var(--accent2);background:rgba(0,153,255,0.1);color:var(--accent2);}
+.match-item.matched{border-color:var(--accent);background:rgba(0,212,170,0.1);color:var(--accent);pointer-events:none;}
+.match-item.wrong-match{border-color:var(--accent3);background:rgba(255,107,107,0.08);animation:shake .3s;}
+#g2-result{text-align:center;margin-top:1rem;font-weight:600;font-size:1rem;}
+#g2-reset{margin:1rem auto 0;display:none;}
+
+/* JUEGO 3 – QUIZ RAPIDO */
+#juego3{background:var(--bg);}
+.quiz-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;}
+.quiz-progress{width:100%;height:6px;background:var(--card2);border-radius:3px;margin-bottom:1.5rem;overflow:hidden;}
+.quiz-progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s ease;}
+.quiz-q{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;min-height:60px;}
+.quiz-opts{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem;}
+.quiz-opt{padding:.9rem 1.2rem;background:var(--card2);border:2px solid var(--border);border-radius:10px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.92rem;transition:.2s;text-align:left;}
+.quiz-opt:hover:not(:disabled){border-color:var(--accent2);color:var(--accent2);}
+.quiz-opt.correct{border-color:var(--accent);background:rgba(0,212,170,0.12);color:var(--accent);}
+.quiz-opt.wrong{border-color:var(--accent3);background:rgba(255,107,107,0.08);color:var(--accent3);}
+.quiz-opt:disabled{cursor:default;}
+.quiz-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;}
+.quiz-timer{font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);}
+#quiz-result{display:none;text-align:center;}
+#quiz-result h3{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;margin-bottom:.5rem;}
+.score-circle{width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--accent) var(--pct,0%), var(--card2) 0%);display:flex;align-items:center;justify-content:center;margin:1.5rem auto;position:relative;}
+.score-circle::after{content:attr(data-score);font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--text);}
+.score-circle-inner{position:absolute;inset:8px;background:var(--card);border-radius:50%;}
+
+/* VIDEO */
+#videos{background:var(--bg2);}
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.video-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.video-thumb{position:relative;padding-top:56.25%;overflow:hidden;}
+.video-thumb iframe{position:absolute;inset:0;width:100%;height:100%;}
+.video-info{padding:1rem;}
+.video-info h4{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.3rem;}
+.video-info p{font-size:.8rem;color:var(--muted);}
+
+/* CREDITOS */
+#creditos{background:var(--bg);}
+.credits-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+@media(max-width:600px){.credits-grid{grid-template-columns:1fr;}}
+.credits-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.8rem;}
+.credits-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+.ref-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;}
+.ref-list li{font-size:.82rem;color:var(--muted);border-left:2px solid var(--border);padding-left:.75rem;line-height:1.5;}
+.author-box{text-align:center;}
+.author-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin:0 auto 1rem;color:#000;}
+.author-box h4{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;}
+.author-box p{color:var(--muted);font-size:.85rem;}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:.83rem;color:var(--muted);}
+footer span{color:var(--accent);}
+
+/* ANIMS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.6;}}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* PROGRESS NAV DOTS */
+.progress-dots{position:fixed;right:1.2rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.5rem;z-index:900;}
+.p-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);transition:.3s;cursor:pointer;}
+.p-dot.active{background:var(--accent);transform:scale(1.4);}
+@media(max-width:768px){.progress-dots{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">TGS · OVA #12</div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#conceptos">Conceptos</a></li>
+      <li><a href="#teoria">Teoría</a></li>
+      <li><a href="#ejemplos">Ejemplos</a></li>
+      <li><a href="#ejercicios">Ejercicios</a></li>
+      <li><a href="#juego1">Juegos</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#creditos">Créditos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PROGRESS DOTS -->
+<div class="progress-dots" id="progressDots"></div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="hero-badge">📡 Teoría General de Sistemas · Proyecto #12</div>
+    <h1>El <span>Enfoque</span><br>Sistémico</h1>
+    <p class="hero-sub">Una mirada holística que transforma la comprensión de la realidad, superando el reduccionismo para ver las conexiones que dan vida a los sistemas.</p>
+    <div class="hero-btns">
+      <a href="#conceptos" class="btn btn-primary">Comenzar aprendizaje →</a>
+      <a href="#juego1" class="btn btn-outline">Ir a los juegos 🎮</a>
+    </div>
+    <div class="hero-cards">
+      <div class="hero-stat"><div class="num">5</div><div class="lbl">Principios clave</div></div>
+      <div class="hero-stat"><div class="num">3</div><div class="lbl">Juegos interactivos</div></div>
+      <div class="hero-stat"><div class="num">10</div><div class="lbl">Preguntas quiz</div></div>
+      <div class="hero-stat"><div class="num">3</div><div class="lbl">Casos reales</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPTOS -->
+<section id="conceptos">
+  <div class="container reveal">
+    <span class="section-tag">📘 Base conceptual</span>
+    <h2 class="section-title">¿Qué es el Enfoque Sistémico?</h2>
+    <p class="section-sub">El enfoque sistémico es una manera de analizar y comprender la realidad considerando los sistemas como un todo integrado, en lugar de estudiar sus partes de forma aislada.</p>
+    <div class="concepts-grid">
+      <div class="concept-card">
+        <div class="concept-icon">🔭</div>
+        <h3>Visión Holística</h3>
+        <p>Contempla el sistema completo como una unidad superior a la suma de sus partes. Ningún elemento puede entenderse sin su contexto dentro del sistema.</p>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔄</div>
+        <h3>Interrelaciones</h3>
+        <p>Se centra en las relaciones y conexiones entre los componentes, más que en los componentes mismos. Los vínculos generan propiedades emergentes.</p>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">⚖️</div>
+        <h3>Perspectiva Dinámica</h3>
+        <p>Reconoce que los sistemas evolucionan en el tiempo. Los estados pasados, presentes y futuros están interconectados por ciclos de retroalimentación.</p>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🌐</div>
+        <h3>Contexto y Entorno</h3>
+        <p>Todo sistema existe dentro de un entorno con el que intercambia materia, energía e información, siendo esta relación fundamental para su funcionamiento.</p>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🎯</div>
+        <h3>Propósito y Sinergia</h3>
+        <p>Los sistemas tienen objetivos o fines. La sinergia implica que la acción coordinada produce resultados mayores que la acción individual de cada parte.</p>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📐</div>
+        <h3>Modelo Integrador</h3>
+        <p>Permite construir modelos que capturan la complejidad real, facilitando el análisis, la predicción y la intervención sobre fenómenos complejos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEORIA -->
+<section id="teoria">
+  <div class="container reveal">
+    <span class="section-tag">📚 Marco teórico</span>
+    <h2 class="section-title">Fundamentos del Enfoque Sistémico</h2>
+    <p class="section-sub">Comprende los principios que sustentan esta perspectiva y cómo difiere del pensamiento analítico tradicional.</p>
+    <div class="theory-layout">
+      <div class="theory-text">
+        <h3>Origen histórico</h3>
+        <p>El enfoque sistémico emerge a mediados del siglo XX como respuesta a las limitaciones del pensamiento cartesiano y reduccionista. Ludwig von Bertalanffy, biólogo austríaco, formuló la <strong style="color:var(--accent)">Teoría General de Sistemas (TGS)</strong> entre 1940 y 1968.</p>
+        <blockquote>"Un sistema es un conjunto de elementos en interacción. Toda acción sobre un elemento repercute sobre los demás." — Ludwig von Bertalanffy</blockquote>
+        <p>Wiener aportó la cibernética, Forrester la dinámica de sistemas, y Checkland desarrolló la metodología de sistemas blandos (SSM), enriqueciendo esta corriente de pensamiento.</p>
+        <h3 style="margin-top:1.5rem;">Diferencia clave con el reduccionismo</h3>
+        <p>Mientras el <strong style="color:var(--accent3)">reduccionismo</strong> descompone el todo en partes para estudiarlas por separado, el <strong style="color:var(--accent)">enfoque sistémico</strong> mantiene la integridad del todo, pues considera que las propiedades emergentes solo existen en el nivel del sistema completo.</p>
+      </div>
+      <div>
+        <ul class="principles-list">
+          <li>
+            <span class="icon">🔁</span>
+            <div><strong>Retroalimentación (Feedback)</strong> Los sistemas tienen mecanismos de autorregulación que les permiten responder a cambios en el entorno y mantener el equilibrio (homeostasis).</div>
+          </li>
+          <li>
+            <span class="icon">💡</span>
+            <div><strong>Emergencia</strong> El sistema posee propiedades que no existen en sus componentes individuales. El todo es cualitativamente diferente a la suma de las partes.</div>
+          </li>
+          <li>
+            <span class="icon">🔗</span>
+            <div><strong>Equifinalidad</strong> Un sistema puede llegar al mismo estado final desde distintas condiciones iniciales o por distintos caminos, especialmente en sistemas abiertos.</div>
+          </li>
+          <li>
+            <span class="icon">🌊</span>
+            <div><strong>Entropía y neguentropía</strong> Los sistemas abiertos pueden importar energía del entorno para mantener o incrementar su organización, contrarrestando la tendencia al desorden.</div>
+          </li>
+          <li>
+            <span class="icon">🏗️</span>
+            <div><strong>Jerarquía y subsistemas</strong> Todo sistema forma parte de un suprasistema y contiene subsistemas. Esta estructura jerárquica organiza la complejidad en niveles.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGRAMA -->
+<section id="diagrama">
+  <div class="container reveal">
+    <span class="section-tag">🗺️ Visualización</span>
+    <h2 class="section-title">Estructura de un Sistema</h2>
+    <p class="section-sub">Haz clic en cada elemento del diagrama para conocer su función dentro del enfoque sistémico.</p>
+    <div class="diagram-wrap">
+      <div class="diagram-svg-wrap">
+        <svg viewBox="0 0 780 320" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans,sans-serif">
+          <!-- Background -->
+          <rect width="780" height="320" fill="#131d35" rx="12"/>
+          <!-- ENTORNO label -->
+          <text x="390" y="28" text-anchor="middle" fill="#8892b0" font-size="12" letter-spacing="2">— ENTORNO —</text>
+          <!-- Entorno rect -->
+          <rect x="20" y="35" width="740" height="260" rx="10" fill="none" stroke="#00d4aa" stroke-width="1" stroke-dasharray="6,4" opacity=".4"/>
+
+          <!-- ENTRADA -->
+          <g id="d-entrada" style="cursor:pointer" onclick="showDiagramInfo('entrada')">
+            <rect x="40" y="115" width="130" height="80" rx="10" fill="#1a2540" stroke="#0099ff" stroke-width="2"/>
+            <text x="105" y="148" text-anchor="middle" fill="#0099ff" font-size="13" font-weight="700">ENTRADA</text>
+            <text x="105" y="166" text-anchor="middle" fill="#8892b0" font-size="10">Datos / Recursos</text>
+            <text x="105" y="180" text-anchor="middle" fill="#8892b0" font-size="10">Información</text>
+          </g>
+          <!-- Arrow E→P -->
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#00d4aa"/>
+            </marker>
+          </defs>
+          <line x1="172" y1="155" x2="225" y2="155" stroke="#00d4aa" stroke-width="2" marker-end="url(#arr)"/>
+
+          <!-- PROCESO -->
+          <g id="d-proceso" style="cursor:pointer" onclick="showDiagramInfo('proceso')">
+            <rect x="228" y="100" width="150" height="110" rx="10" fill="#1a2540" stroke="#00d4aa" stroke-width="2.5"/>
+            <text x="303" y="143" text-anchor="middle" fill="#00d4aa" font-size="13" font-weight="700">PROCESO</text>
+            <text x="303" y="161" text-anchor="middle" fill="#8892b0" font-size="10">Transformación</text>
+            <text x="303" y="177" text-anchor="middle" fill="#8892b0" font-size="10">y procesamiento</text>
+          </g>
+          <!-- Arrow P→S -->
+          <line x1="380" y1="155" x2="430" y2="155" stroke="#00d4aa" stroke-width="2" marker-end="url(#arr)"/>
+
+          <!-- SALIDA -->
+          <g id="d-salida" style="cursor:pointer" onclick="showDiagramInfo('salida')">
+            <rect x="433" y="115" width="130" height="80" rx="10" fill="#1a2540" stroke="#0099ff" stroke-width="2"/>
+            <text x="498" y="148" text-anchor="middle" fill="#0099ff" font-size="13" font-weight="700">SALIDA</text>
+            <text x="498" y="166" text-anchor="middle" fill="#8892b0" font-size="10">Productos</text>
+            <text x="498" y="180" text-anchor="middle" fill="#8892b0" font-size="10">Resultados</text>
+          </g>
+
+          <!-- CONTROL -->
+          <g id="d-control" style="cursor:pointer" onclick="showDiagramInfo('control')">
+            <rect x="283" y="235" width="130" height="55" rx="10" fill="#1a2540" stroke="#ffd166" stroke-width="1.5"/>
+            <text x="348" y="260" text-anchor="middle" fill="#ffd166" font-size="12" font-weight="700">CONTROL</text>
+            <text x="348" y="278" text-anchor="middle" fill="#8892b0" font-size="10">Restricciones</text>
+          </g>
+          <line x1="348" y1="235" x2="348" y2="210" stroke="#ffd166" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+
+          <!-- RETROALIMENTACIÓN -->
+          <g id="d-retro" style="cursor:pointer" onclick="showDiagramInfo('retro')">
+            <path d="M563 155 Q640 155 640 230 Q640 295 348 295 Q160 295 105 230 Q105 190 105 195" fill="none" stroke="#ff6b6b" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+            <rect x="575" y="200" width="140" height="50" rx="8" fill="#1a2540" stroke="#ff6b6b" stroke-width="1.5"/>
+            <text x="645" y="222" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="700">RETROALIM.</text>
+            <text x="645" y="240" text-anchor="middle" fill="#8892b0" font-size="10">Ciclo de ajuste</text>
+          </g>
+
+          <!-- MECANISMO -->
+          <g id="d-mecanismo" style="cursor:pointer" onclick="showDiagramInfo('mecanismo')">
+            <rect x="283" y="45" width="130" height="45" rx="10" fill="#1a2540" stroke="#8892b0" stroke-width="1.5"/>
+            <text x="348" y="65" text-anchor="middle" fill="#ccd6f6" font-size="11" font-weight="700">MECANISMO</text>
+            <text x="348" y="81" text-anchor="middle" fill="#8892b0" font-size="10">Recursos / Herramientas</text>
+          </g>
+          <line x1="348" y1="90" x2="348" y2="100" stroke="#8892b0" stroke-width="1.5" marker-end="url(#arr)"/>
+        </svg>
+      </div>
+      <div class="diagram-info" id="diagramInfo">
+        <strong>💡 Tip:</strong> Haz clic en cualquier componente del diagrama para ver su descripción detallada.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EJEMPLOS -->
+<section id="ejemplos">
+  <div class="container reveal">
+    <span class="section-tag">🌍 Casos reales</span>
+    <h2 class="section-title">El Enfoque Sistémico en la Práctica</h2>
+    <p class="section-sub">Observa cómo este enfoque se aplica en tres contextos completamente distintos del mundo real.</p>
+    <div class="examples-tabs">
+      <button class="tab-btn active" onclick="showTab('tab1',this)">🏥 Salud Pública</button>
+      <button class="tab-btn" onclick="showTab('tab2',this)">🏭 Empresa</button>
+      <button class="tab-btn" onclick="showTab('tab3',this)">🌱 Ecología</button>
+    </div>
+    <div id="tab1" class="tab-content active">
+      <div class="example-card">
+        <div>
+          <h3>Sistema de Salud Pública</h3>
+          <p>Una epidemia no se controla tratando solo a los enfermos. El enfoque sistémico analiza los múltiples componentes interrelacionados: infraestructura hospitalaria, políticas de prevención, comportamiento social, condiciones económicas y medio ambiente.</p>
+          <p>La pandemia del COVID-19 demostró que una respuesta puramente médica era insuficiente; se requirió coordinar políticas públicas, economía, educación y tecnología como un sistema integrado.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;">
+            <span class="tag">Retroalimentación epidemiológica</span>
+            <span class="tag">Emergencia social</span>
+            <span class="tag">Múltiples subsistemas</span>
+          </div>
+        </div>
+        <div class="example-visual">
+          <div style="text-align:center;margin-bottom:.75rem;font-size:.8rem;color:var(--gold);font-weight:700;">COMPONENTES DEL SISTEMA</div>
+          <div class="ev-row"><div class="ev-dot" style="background:#00d4aa"></div><span>Hospitales y centros de salud</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#0099ff"></div><span>Ministerio / políticas de salud</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#ffd166"></div><span>Comportamiento ciudadano</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#ff6b6b"></div><span>Entorno económico y social</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#c084fc"></div><span>Tecnología e investigación</span></div>
+          <div style="margin-top:1rem;padding:.75rem;background:rgba(0,212,170,0.08);border-radius:8px;font-size:.8rem;color:var(--accent)">
+            ⟳ El aislamiento social → ↓ contagios → ↑ capacidad hospitalaria → mejor respuesta
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="tab2" class="tab-content">
+      <div class="example-card">
+        <div>
+          <h3>Organización Empresarial</h3>
+          <p>Una empresa vista sistémicamente supera el organigrama funcional. Cada departamento (marketing, producción, finanzas, RRHH) es un subsistema interrelacionado con los demás y con el entorno de mercado.</p>
+          <p>Un problema en producción no es solo un problema de producción: afecta la satisfacción del cliente (retroalimentación), la imagen de marca, las finanzas y la moral del equipo. El enfoque sistémico permite identificar el punto de apalancamiento real.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;">
+            <span class="tag">Sinergia organizacional</span>
+            <span class="tag">Bucles causales</span>
+            <span class="tag">Sistema abierto</span>
+          </div>
+        </div>
+        <div class="example-visual">
+          <div style="text-align:center;margin-bottom:.75rem;font-size:.8rem;color:var(--gold);font-weight:700;">FLUJO SISTÉMICO</div>
+          <div class="ev-row"><div class="ev-dot" style="background:#0099ff"></div><span>Mercado → Demanda (entrada)</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#00d4aa"></div><span>Operaciones → Producto (proceso)</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#ffd166"></div><span>Ventas → Ingresos (salida)</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#ff6b6b"></div><span>Clientes → Feedback (retro.)</span></div>
+          <div style="margin-top:1rem;padding:.75rem;background:rgba(0,153,255,0.08);border-radius:8px;font-size:.8rem;color:var(--accent2)">
+            📊 Satisfacción del cliente → retroalimenta → estrategia de producción
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="tab3" class="tab-content">
+      <div class="example-card">
+        <div>
+          <h3>Ecosistema Natural</h3>
+          <p>Un bosque tropical es un sistema altamente complejo donde cada especie cumple un rol. La extinción de una especie (polinizadores, depredadores, descomponedores) genera efectos en cascada sobre todo el ecosistema.</p>
+          <p>El enfoque sistémico en ecología permitió comprender que la introducción de lobos en el Parque Yellowstone (1995) no solo reguló las poblaciones de ciervos, sino que regeneró los ríos, los bosques ribereños y la biodiversidad completa.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;">
+            <span class="tag">Cadenas tróficas</span>
+            <span class="tag">Propiedades emergentes</span>
+            <span class="tag">Autorregulación</span>
+          </div>
+        </div>
+        <div class="example-visual">
+          <div style="text-align:center;margin-bottom:.75rem;font-size:.8rem;color:var(--gold);font-weight:700;">EFECTO EN CASCADA</div>
+          <div class="ev-row"><div class="ev-dot" style="background:#00d4aa"></div><span>🐺 Lobos → controlan ciervos</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#0099ff"></div><span>🦌 Ciervos → cambian hábitos</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#ffd166"></div><span>🌿 Vegetación → se recupera</span></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#ff6b6b"></div><span>🌊 Ríos → cambian de curso</span></div>
+          <div style="margin-top:1rem;padding:.75rem;background:rgba(0,212,170,0.08);border-radius:8px;font-size:.8rem;color:var(--accent)">
+            🔄 Un solo cambio sistémico transformó todo el parque en 20 años
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EJERCICIOS -->
+<section id="ejercicios">
+  <div class="container reveal">
+    <span class="section-tag">✏️ Practica</span>
+    <h2 class="section-title">Ejercicios con Retroalimentación</h2>
+    <p class="section-sub">Pon a prueba tu comprensión. Selecciona la respuesta y recibe retroalimentación inmediata.</p>
+    <div class="exercises-grid">
+      <!-- Ejercicio 1 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise('ex1')">
+          <h4>Ejercicio 1 · El Todo y las Partes</h4>
+          <span class="exercise-badge">Conceptual</span>
+        </div>
+        <div class="exercise-body" id="ex1">
+          <p>Un ingeniero analiza el rendimiento de un motor estudiando cada pieza por separado. Luego se queja de que el motor funciona mal aunque cada pieza está en buen estado. ¿Qué perspectiva le falta?</p>
+          <ul class="exercise-options" id="eq1-opts">
+            <li><button onclick="checkExercise('eq1',0,1,'eq1-fb')">A) Un enfoque reduccionista más detallado</button></li>
+            <li><button onclick="checkExercise('eq1',1,1,'eq1-fb')">B) El enfoque sistémico: las interrelaciones entre las piezas</button></li>
+            <li><button onclick="checkExercise('eq1',2,1,'eq1-fb')">C) Más datos cuantitativos sobre cada pieza</button></li>
+            <li><button onclick="checkExercise('eq1',3,1,'eq1-fb')">D) Herramientas de diagnóstico más precisas</button></li>
+          </ul>
+          <div class="feedback" id="eq1-fb"></div>
+        </div>
+      </div>
+      <!-- Ejercicio 2 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise('ex2')">
+          <h4>Ejercicio 2 · Retroalimentación</h4>
+          <span class="exercise-badge">Aplicación</span>
+        </div>
+        <div class="exercise-body" id="ex2">
+          <p>El termostato de un edificio mide la temperatura ambiente y enciende o apaga el aire acondicionado automáticamente. ¿Qué principio sistémico demuestra este mecanismo?</p>
+          <ul class="exercise-options" id="eq2-opts">
+            <li><button onclick="checkExercise('eq2',0,2,'eq2-fb')">A) Equifinalidad del sistema</button></li>
+            <li><button onclick="checkExercise('eq2',1,2,'eq2-fb')">B) Entropía creciente del sistema</button></li>
+            <li><button onclick="checkExercise('eq2',2,2,'eq2-fb')">C) Retroalimentación negativa para mantener homeostasis</button></li>
+            <li><button onclick="checkExercise('eq2',3,2,'eq2-fb')">D) Emergencia de propiedades nuevas</button></li>
+          </ul>
+          <div class="feedback" id="eq2-fb"></div>
+        </div>
+      </div>
+      <!-- Ejercicio 3 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise('ex3')">
+          <h4>Ejercicio 3 · Propiedad emergente</h4>
+          <span class="exercise-badge">Análisis</span>
+        </div>
+        <div class="exercise-body" id="ex3">
+          <p>Ningún músico individualmente puede producir la armonía que logra una orquesta sinfónica cuando toca en conjunto. ¿Qué concepto del enfoque sistémico explica este fenómeno?</p>
+          <ul class="exercise-options" id="eq3-opts">
+            <li><button onclick="checkExercise('eq3',0,0,'eq3-fb')">A) Emergencia: el todo tiene propiedades que las partes no poseen individualmente</button></li>
+            <li><button onclick="checkExercise('eq3',1,0,'eq3-fb')">B) Entropía: el sistema tiende al desorden</button></li>
+            <li><button onclick="checkExercise('eq3',2,0,'eq3-fb')">C) Reduccionismo: estudiando cada instrumento se comprende la orquesta</button></li>
+            <li><button onclick="checkExercise('eq3',3,0,'eq3-fb')">D) Equifinalidad: todos los instrumentos llegan al mismo sonido</button></li>
+          </ul>
+          <div class="feedback" id="eq3-fb"></div>
+        </div>
+      </div>
+      <!-- Ejercicio 4 -->
+      <div class="exercise">
+        <div class="exercise-header" onclick="toggleExercise('ex4')">
+          <h4>Ejercicio 4 · Análisis sistémico</h4>
+          <span class="exercise-badge">Síntesis</span>
+        </div>
+        <div class="exercise-body" id="ex4">
+          <p>Una ciudad aumenta el número de carriles en sus vías principales para reducir la congestión, pero a los dos años el tráfico empeoró. ¿Qué explica este fenómeno desde el enfoque sistémico?</p>
+          <ul class="exercise-options" id="eq4-opts">
+            <li><button onclick="checkExercise('eq4',0,3,'eq4-fb')">A) Fue una decisión técnica incorrecta</button></li>
+            <li><button onclick="checkExercise('eq4',1,3,'eq4-fb')">B) Faltó presupuesto para completar la obra</button></li>
+            <li><button onclick="checkExercise('eq4',2,3,'eq4-fb')">C) El problema se debía a falta de señales de tránsito</button></li>
+            <li><button onclick="checkExercise('eq4',3,3,'eq4-fb')">D) Bucle de retroalimentación positiva: más carriles → más autos → más congestión</button></li>
+          </ul>
+          <div class="feedback" id="eq4-fb"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JUEGO 1 – CLASIFICA EL ELEMENTO -->
+<section id="juego1">
+  <div class="container reveal">
+    <span class="section-tag">🎮 Juego 1</span>
+    <h2 class="section-title">¿Sistémico o Reduccionista?</h2>
+    <p class="section-sub" style="margin-bottom:2rem;">Clasifica cada afirmación según si corresponde al enfoque sistémico o al reduccionista. ¡Tienes 3 vidas!</p>
+    <div class="game-wrap">
+      <h3 id="g1-title">Clasifica la afirmación</h3>
+      <p class="game-desc">Lee cuidadosamente y elige la categoría correcta.</p>
+      <div class="game-score-bar">
+        <div class="game-score">Puntos: <span id="g1-score">0</span></div>
+        <div class="game-lives" id="g1-lives">
+          <span>❤️</span><span>❤️</span><span>❤️</span>
+        </div>
+      </div>
+      <div id="g1-card"><p id="g1-text">Cargando...</p></div>
+      <div class="g1-cols">
+        <div class="g1-col">
+          <h4>🔭 Sistémico</h4>
+          <button class="g1-btn" onclick="classifyAnswer('sistemico')">Es SISTÉMICO</button>
+        </div>
+        <div class="g1-col">
+          <h4>🔬 Reduccionista</h4>
+          <button class="g1-btn" onclick="classifyAnswer('reduccionista')">Es REDUCCIONISTA</button>
+        </div>
+      </div>
+      <div id="g1-feedback"></div>
+      <button class="btn btn-primary" id="g1-next" onclick="nextG1Card()" style="margin:1rem auto 0;display:none;">Siguiente →</button>
+      <div id="g1-end" style="display:none;text-align:center;margin-top:1rem;">
+        <p style="font-size:1.1rem;font-weight:600;color:var(--gold)">Juego terminado · <span id="g1-final-score"></span></p>
+        <button class="btn btn-outline" onclick="resetG1()" style="margin-top:.75rem;">🔄 Jugar de nuevo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JUEGO 2 – CONECTA CONCEPTO-DEFINICIÓN -->
+<section id="juego2">
+  <div class="container reveal">
+    <span class="section-tag">🎮 Juego 2</span>
+    <h2 class="section-title">Conecta: Concepto y Definición</h2>
+    <p class="section-sub" style="margin-bottom:2rem;">Selecciona un concepto de la columna izquierda y luego su definición correcta en la derecha.</p>
+    <div class="game-wrap">
+      <div id="g2-result"></div>
+      <div class="match-game">
+        <div>
+          <h4>Conceptos</h4>
+          <div id="g2-left"></div>
+        </div>
+        <div>
+          <h4>Definiciones</h4>
+          <div id="g2-right"></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:1.5rem;">
+        <button class="btn btn-outline" id="g2-reset" onclick="resetG2()">🔄 Reiniciar juego</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JUEGO 3 – QUIZ INTERACTIVO -->
+<section id="juego3">
+  <div class="container reveal">
+    <span class="section-tag">🎮 Juego 3 · Quiz Final</span>
+    <h2 class="section-title">Evaluación Interactiva</h2>
+    <p class="section-sub" style="margin-bottom:2rem;">10 preguntas cronometradas. Demuestra cuánto aprendiste sobre el Enfoque Sistémico.</p>
+    <div class="quiz-box">
+      <div id="quiz-game">
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="qProgressBar" style="width:10%"></div></div>
+        <div class="quiz-meta">
+          <span id="qNum">Pregunta 1 / 10</span>
+          <span class="quiz-timer">⏱ <span id="qTimer">15</span>s</span>
+        </div>
+        <div class="quiz-q" id="qQuestion"></div>
+        <div class="quiz-opts" id="qOpts"></div>
+      </div>
+      <div id="quiz-result">
+        <h3 id="qResTitle"></h3>
+        <div class="score-circle" id="qCircle"><div class="score-circle-inner"></div></div>
+        <p id="qResMsg" style="color:var(--muted);margin-bottom:1.5rem;font-size:.95rem;"></p>
+        <button class="btn btn-primary" onclick="resetQuiz()">🔄 Intentar de nuevo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="container reveal">
+    <span class="section-tag">🎬 Recursos audiovisuales</span>
+    <h2 class="section-title">Videos Recomendados</h2>
+    <p class="section-sub">Explora estos recursos para profundizar en el Enfoque Sistémico desde distintas perspectivas.</p>
+    <div class="videos-grid">
+      <div class="video-card">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/-GUb30TfwtI" title="Enfoque Sistémico - Teoría General de los Sistemas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <h4>Enfoque Sistémico – Teoría General de los Sistemas</h4>
+          <p>Descripción de la perspectiva epistemológica del enfoque sistémico y sus fundamentos en la TGS.</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/QlL5SLjqzhc" title="Teoría general de sistemas: UD1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <h4>TGS Unidad 1 – Enfoque Sistémico</h4>
+          <p>Unidad didáctica con las herramientas conceptuales para diferenciar los elementos estructurales de la TGS.</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/Z8a9W75Wzh8" title="Pensamiento Sistémico en la Educación" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-info">
+          <h4>Pensamiento Sistémico y TGS en la Educación</h4>
+          <p>Ponencia del Prof. Williams Jiménez (Colombia) sobre pensamiento sistémico aplicado a la educación.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRÉDITOS -->
+<section id="creditos">
+  <div class="container reveal">
+    <span class="section-tag">📋 Créditos y referencias</span>
+    <h2 class="section-title">Ficha Técnica del Proyecto</h2>
+    <p class="section-sub">Información académica y referencias bibliográficas utilizadas en la construcción de esta OVA.</p>
+    <div class="credits-grid">
+      <div class="credits-card author-box">
+        <div class="author-avatar">YL</div>
+        <h4>Largo Sanjuan Yojan Steven</h4>
+        <p style="margin-top:.4rem;color:var(--muted);">Autor de la OVA</p>
+        <div style="margin-top:1.2rem;background:var(--card2);border-radius:10px;padding:1rem;text-align:left;font-size:.85rem;">
+          <p><strong style="color:var(--accent);">Asignatura:</strong> Teoría General de Sistemas</p>
+          <p style="margin-top:.4rem;"><strong style="color:var(--accent);">Tema:</strong> El Enfoque Sistémico (Proyecto #12)</p>
+          <p style="margin-top:.4rem;"><strong style="color:var(--accent);">Universidad:</strong> Simón Bolívar – Cúcuta</p>
+          <p style="margin-top:.4rem;"><strong style="color:var(--accent);">Tecnologías:</strong> HTML5, CSS3, JavaScript</p>
+          <p style="margin-top:.4rem;"><strong style="color:var(--accent);">Herramientas:</strong> Claude AI, VS Code</p>
+        </div>
+      </div>
+      <div class="credits-card">
+        <h3>📚 Referencias Bibliográficas</h3>
+        <ul class="ref-list">
+          <li>Bertalanffy, L. von (1968). <em>General System Theory: Foundations, Development, Applications.</em> George Braziller.</li>
+          <li>Checkland, P. (1981). <em>Systems Thinking, Systems Practice.</em> John Wiley & Sons.</li>
+          <li>Senge, P. (1990). <em>La Quinta Disciplina: El arte y la práctica de la organización abierta al aprendizaje.</em> Granica.</li>
+          <li>Forrester, J. W. (1961). <em>Industrial Dynamics.</em> MIT Press.</li>
+          <li>Ackoff, R. L. (1994). <em>The Democratic Corporation.</em> Oxford University Press.</li>
+          <li>Morin, E. (1977). <em>El Método I: La naturaleza de la naturaleza.</em> Cátedra.</li>
+          <li>Wiener, N. (1948). <em>Cybernetics: Control and Communication in the Animal and the Machine.</em> MIT Press.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>OVA #12 · <span>El Enfoque Sistémico</span> · Teoría General de Sistemas</p>
+  <p style="margin-top:.4rem;">Yojan Steven Largo Sanjuan · Universidad Simón Bolívar · Cúcuta, Colombia · 2025</p>
+</footer>
+
+<script>
+// ==================== NAV ====================
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// ==================== REVEAL ====================
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// ==================== PROGRESS DOTS ====================
+const sections=['inicio','conceptos','teoria','diagrama','ejemplos','ejercicios','juego1','juego2','juego3','videos','creditos'];
+const dotsContainer=document.getElementById('progressDots');
+sections.forEach((id,i)=>{
+  const d=document.createElement('div');
+  d.className='p-dot';
+  d.title=id;
+  d.onclick=()=>document.getElementById(id).scrollIntoView({behavior:'smooth'});
+  dotsContainer.appendChild(d);
+});
+const dotEls=dotsContainer.querySelectorAll('.p-dot');
+window.addEventListener('scroll',()=>{
+  let current=0;
+  sections.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-200)current=i;
+  });
+  dotEls.forEach((d,i)=>d.classList.toggle('active',i===current));
+});
+
+// ==================== DIAGRAM ====================
+const diagramData={
+  entrada:{title:'ENTRADA',text:'Recursos, datos, energía o información que ingresan al sistema desde el entorno. Sin entradas, el sistema no puede funcionar. Ej: materias primas en una fábrica, solicitudes en un hospital, datos en un software.'},
+  proceso:{title:'PROCESO',text:'Conjunto de actividades y transformaciones que convierten las entradas en salidas. Es el corazón del sistema donde ocurre la creación de valor. Ej: manufactura, diagnóstico médico, algoritmos de cómputo.'},
+  salida:{title:'SALIDA',text:'Productos, servicios, información o decisiones que el sistema entrega al entorno como resultado del procesamiento. Deben alinearse con los objetivos del sistema. Ej: producto terminado, informe clínico, resultado de cálculo.'},
+  control:{title:'CONTROL / RESTRICCIONES',text:'Normas, políticas, leyes o condiciones que regulan cómo funciona el proceso. Determinan qué transformaciones son permitidas. Ej: normativas ISO, protocolos médicos, reglas de negocio.'},
+  retro:{title:'RETROALIMENTACIÓN',text:'Información sobre las salidas que regresa al sistema para ajustar las entradas o el proceso. Es el mecanismo de autorregulación que permite al sistema aprender y adaptarse. Ej: encuestas de satisfacción, indicadores KPI, sensores en maquinaria.'},
+  mecanismo:{title:'MECANISMO / HABILITADORES',text:'Recursos y herramientas que hacen posible el proceso: personas, tecnología, infraestructura, conocimiento. Sin mecanismos adecuados, el proceso no puede ejecutarse eficientemente.'}
+};
+function showDiagramInfo(key){
+  const d=diagramData[key];
+  document.getElementById('diagramInfo').innerHTML=`<strong style="color:var(--accent);font-family:'Syne',sans-serif;">${d.title}</strong><br><br>${d.text}`;
+}
+
+// ==================== TABS ====================
+function showTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ==================== EXERCISES ====================
+function toggleExercise(id){
+  const b=document.getElementById(id);
+  b.classList.toggle('open');
+}
+const exerciseFeedback={
+  eq1:{correct:1,texts:['❌ Incorrecto. El reduccionismo más detallado sería más de lo mismo. El problema es justamente que analizó las piezas por separado.','✅ ¡Correcto! El enfoque sistémico estudia cómo las piezas interactúan entre sí. Las interrelaciones son tan importantes como las partes.','❌ Incorrecto. Más datos sobre cada pieza individual no resuelve el problema de comprender las interacciones del sistema.','❌ Incorrecto. Las herramientas de diagnóstico pueden ayudar, pero el problema fundamental es la perspectiva analítica adoptada.']},
+  eq2:{correct:2,texts:['❌ Incorrecto. La equifinalidad se refiere a alcanzar el mismo estado final desde distintos puntos de partida.','❌ Incorrecto. La entropía es la tendencia al desorden; el termostato hace lo opuesto: mantiene el orden.','✅ ¡Correcto! La retroalimentación negativa corrige las desviaciones del estado deseado, manteniendo la homeostasis del sistema.','❌ Incorrecto. La emergencia implica propiedades que surgen del sistema completo, no de la autorregulación individual.']},
+  eq3:{correct:0,texts:['✅ ¡Correcto! La armonía orquestal es una propiedad emergente: solo existe cuando los músicos interactúan como sistema.','❌ Incorrecto. La entropía describe la tendencia al desorden; la armonía es un ejemplo de orden emergente.','❌ Incorrecto. Estudiar cada instrumento por separado nunca producirá la comprensión de la armonía conjunta.','❌ Incorrecto. La equifinalidad se refiere a distintos caminos hacia el mismo fin, no a las propiedades del conjunto.']},
+  eq4:{correct:3,texts:['❌ Incorrecto. La solución técnica puede ser válida, pero ignora la dinámica sistémica.','❌ Incorrecto. El presupuesto no explica por qué más capacidad vial generó más tráfico.','❌ Incorrecto. Las señales de tránsito no explican el fenómeno de largo plazo.','✅ ¡Correcto! Este es el "efecto inducción" o bucle de retroalimentación positiva: mayor capacidad vial atrae más autos, aumentando la congestión a largo plazo.']}
+};
+function checkExercise(id,chosen,correct,fbId){
+  const opts=document.querySelectorAll(`#${id}-opts li button`);
+  opts.forEach((b,i)=>{
+    b.disabled=true;
+    if(i===correct)b.classList.add('correct');
+    else if(i===chosen&&chosen!==correct)b.classList.add('wrong');
+  });
+  const fb=document.getElementById(fbId);
+  const data=exerciseFeedback[id];
+  fb.textContent=data.texts[chosen];
+  fb.className='feedback show '+(chosen===correct?'ok':'fail');
+}
+
+// ==================== JUEGO 1 ====================
+const g1Cards=[
+  {text:"Para entender por qué fracasó una empresa, analizo cada departamento de forma independiente.",answer:"reduccionista"},
+  {text:"Al diseñar una política de salud, considero cómo interactúan economía, educación y medio ambiente.",answer:"sistemico"},
+  {text:"Estudio el cerebro humano neuronilla por neuronílla sin considerar sus conexiones.",answer:"reduccionista"},
+  {text:"Analizo cómo el ausentismo laboral afecta la productividad, que a su vez afecta los ingresos y el clima organizacional.",answer:"sistemico"},
+  {text:"Para mejorar el rendimiento escolar, solo miro las calificaciones de cada alumno individualmente.",answer:"reduccionista"},
+  {text:"Un río contaminado no es solo un problema ambiental; analizo su relación con agricultura, salud pública y economía local.",answer:"sistemico"},
+  {text:"Para resolver la congestión vial, construyo más carriles sin analizar cómo eso afectará el flujo de autos a largo plazo.",answer:"reduccionista"},
+  {text:"El comportamiento de un mercado financiero emerge de millones de interacciones que no pueden predecirse estudiando inversores individuales.",answer:"sistemico"},
+];
+let g1Index=0, g1Score=0, g1Lives=3, g1Shuffled=[];
+function shuffleG1(){g1Shuffled=[...g1Cards].sort(()=>Math.random()-.5);g1Index=0;}
+function renderG1(){
+  if(g1Index>=g1Shuffled.length||g1Lives<=0){endG1();return;}
+  document.getElementById('g1-text').textContent=g1Shuffled[g1Index].text;
+  document.getElementById('g1-feedback').textContent='';
+  document.getElementById('g1-feedback').style.color='';
+  document.getElementById('g1-next').style.display='none';
+  document.querySelectorAll('.g1-btn').forEach(b=>b.disabled=false);
+}
+function classifyAnswer(choice){
+  const card=g1Shuffled[g1Index];
+  const fb=document.getElementById('g1-feedback');
+  document.querySelectorAll('.g1-btn').forEach(b=>b.disabled=true);
+  if(choice===card.answer){
+    g1Score++;
+    document.getElementById('g1-score').textContent=g1Score;
+    fb.textContent='✅ ¡Correcto! '+g1Score+' pts';
+    fb.style.color='var(--accent)';
+  } else {
+    g1Lives--;
+    const livesEl=document.getElementById('g1-lives');
+    const hearts=livesEl.querySelectorAll('span');
+    if(hearts[g1Lives])hearts[g1Lives].textContent='🖤';
+    fb.textContent='❌ Era: '+card.answer.toUpperCase()+'. Vidas restantes: '+g1Lives;
+    fb.style.color='var(--accent3)';
+  }
+  if(g1Lives<=0||g1Index>=g1Shuffled.length-1){setTimeout(endG1,1200);}
+  else{document.getElementById('g1-next').style.display='block';}
+  g1Index++;
+}
+function nextG1Card(){renderG1();}
+function endG1(){
+  document.getElementById('g1-end').style.display='block';
+  document.getElementById('g1-final-score').textContent=g1Score+' / '+g1Cards.length+' correctas';
+  document.querySelector('.g1-cols').style.display='none';
+  document.getElementById('g1-next').style.display='none';
+}
+function resetG1(){
+  g1Score=0;g1Lives=3;
+  document.getElementById('g1-score').textContent='0';
+  document.getElementById('g1-lives').innerHTML='<span>❤️</span><span>❤️</span><span>❤️</span>';
+  document.getElementById('g1-end').style.display='none';
+  document.querySelector('.g1-cols').style.display='grid';
+  shuffleG1();renderG1();
+}
+shuffleG1();renderG1();
+
+// ==================== JUEGO 2 ====================
+const g2Pairs=[
+  {concept:"Emergencia",def:"Propiedad que posee el sistema completo pero no sus partes individuales"},
+  {concept:"Homeostasis",def:"Capacidad del sistema de mantener su equilibrio interno ante perturbaciones externas"},
+  {concept:"Equifinalidad",def:"Un sistema puede alcanzar el mismo estado final desde distintas condiciones iniciales"},
+  {concept:"Entropía",def:"Tendencia natural de los sistemas cerrados hacia el desorden y la degradación"},
+  {concept:"Sinergia",def:"La acción coordinada del sistema produce resultados mayores que la suma de acciones individuales"},
+  {concept:"Retroalimentación",def:"Información de la salida que regresa al sistema para regular su funcionamiento"},
+];
+let g2Selected=null, g2MatchedCount=0;
+function renderG2(){
+  const left=document.getElementById('g2-left');
+  const right=document.getElementById('g2-right');
+  left.innerHTML='';right.innerHTML='';
+  g2MatchedCount=0;g2Selected=null;
+  const shuffledRight=[...g2Pairs].sort(()=>Math.random()-.5);
+  g2Pairs.forEach((p,i)=>{
+    const lDiv=document.createElement('div');
+    lDiv.className='match-item';lDiv.dataset.type='concept';lDiv.dataset.id=i;
+    lDiv.textContent=p.concept;lDiv.onclick=()=>g2Click(lDiv,'concept',i);
+    left.appendChild(lDiv);
+  });
+  shuffledRight.forEach((p)=>{
+    const rDiv=document.createElement('div');
+    rDiv.className='match-item';rDiv.dataset.type='def';
+    const origIdx=g2Pairs.indexOf(p);
+    rDiv.dataset.id=origIdx;rDiv.textContent=p.def;
+    rDiv.onclick=()=>g2Click(rDiv,'def',origIdx);
+    right.appendChild(rDiv);
+  });
+}
+function g2Click(el,type,id){
+  if(el.classList.contains('matched'))return;
+  if(!g2Selected){
+    g2Selected={el,type,id};el.classList.add('selected');
+  } else {
+    if(g2Selected.type===type){g2Selected.el.classList.remove('selected');g2Selected={el,type,id};el.classList.add('selected');return;}
+    if(g2Selected.id===id){
+      g2Selected.el.classList.remove('selected');g2Selected.el.classList.add('matched');
+      el.classList.add('matched');g2MatchedCount++;
+      if(g2MatchedCount===g2Pairs.length){
+        document.getElementById('g2-result').innerHTML='<p style="color:var(--accent);font-weight:700;font-size:1.1rem;">🎉 ¡Perfecto! Conectaste todos los pares correctamente.</p>';
+        document.getElementById('g2-reset').style.display='inline-block';
+      }
+    } else {
+      g2Selected.el.classList.remove('selected');el.classList.add('wrong-match');
+      g2Selected.el.classList.add('wrong-match');
+      setTimeout(()=>{el.classList.remove('wrong-match');g2Selected.el.classList.remove('wrong-match');},600);
+    }
+    g2Selected=null;
+  }
+}
+function resetG2(){document.getElementById('g2-result').innerHTML='';document.getElementById('g2-reset').style.display='none';renderG2();}
+renderG2();
+
+// ==================== QUIZ ====================
+const quizQuestions=[
+  {q:"¿Quién es considerado el padre de la Teoría General de Sistemas?",opts:["René Descartes","Ludwig von Bertalanffy","Norbert Wiener","Jay Forrester"],correct:1},
+  {q:"¿Cuál es la diferencia fundamental entre el enfoque sistémico y el reduccionista?",opts:["El sistémico usa matemáticas y el reduccionista no","El sistémico estudia las interrelaciones del todo; el reduccionista estudia las partes aisladamente","El sistémico solo aplica a ciencias naturales","El reduccionista es más moderno y preciso"],correct:1},
+  {q:"Una empresa recibe quejas de clientes y ajusta su proceso de producción. ¿Qué principio sistémico ilustra esto?",opts:["Entropía positiva","Equifinalidad","Retroalimentación negativa (correctiva)","Emergencia estructural"],correct:2},
+  {q:"¿Qué significa que un sistema tenga 'propiedades emergentes'?",opts:["Que el sistema es muy nuevo y está emergiendo","Que posee características que no existen en sus partes individuales","Que es un sistema de tipo biológico","Que sus partes son independientes entre sí"],correct:1},
+  {q:"En el diagrama ICOM (Entrada-Proceso-Salida-Control-Mecanismo), ¿qué representa el CONTROL?",opts:["Los recursos y personas que realizan el proceso","Los datos que entran al sistema","Las normas y restricciones que regulan el proceso","Los resultados que produce el sistema"],correct:2},
+  {q:"¿Cuál de los siguientes es un ejemplo de sistema ABIERTO?",opts:["Un reactor nuclear sellado","Un ecosistema natural","Una caja sellada al vacío","Un cristal en estado sólido"],correct:1},
+  {q:"La 'equifinalidad' en los sistemas significa que:",opts:["Todos los sistemas terminan en el caos","Un mismo fin puede alcanzarse desde distintos estados iniciales o caminos","Los sistemas siempre producen las mismas salidas","El equilibrio es imposible de mantener"],correct:1},
+  {q:"Peter Senge describe el pensamiento sistémico como la 'quinta disciplina' porque:",opts:["Es la más difícil de aprender","Integra y da sentido a las demás disciplinas del aprendizaje organizacional","Fue descubierta en el siglo XXI","Es solo aplicable a organizaciones industriales"],correct:1},
+  {q:"¿Cuál es el rol de la 'retroalimentación positiva' en un sistema?",opts:["Corregir desviaciones y mantener el equilibrio","Amplificar cambios, generando crecimiento o colapso","Reducir la entropía del sistema","Mantener constante la temperatura del sistema"],correct:1},
+  {q:"El enfoque sistémico es más adecuado para problemas:",opts:["Simples con causas y efectos lineales directos","Complejos donde múltiples variables interactúan de forma no lineal","Que pueden resolverse con una sola disciplina","Puramente matemáticos y cuantitativos"],correct:1},
+];
+let qCurrent=0,qScore=0,qTimer=null,qTimeLeft=15,qAnswered=false;
+function renderQuiz(){
+  const q=quizQuestions[qCurrent];
+  document.getElementById('qNum').textContent=`Pregunta ${qCurrent+1} / ${quizQuestions.length}`;
+  document.getElementById('qProgressBar').style.width=((qCurrent+1)/quizQuestions.length*100)+'%';
+  document.getElementById('qQuestion').textContent=q.q;
+  const optsDiv=document.getElementById('qOpts');
+  optsDiv.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='quiz-opt';btn.textContent=opt;
+    btn.onclick=()=>answerQuiz(i,btn);optsDiv.appendChild(btn);
+  });
+  startTimer();
+}
+function startTimer(){
+  clearInterval(qTimer);qTimeLeft=15;qAnswered=false;
+  document.getElementById('qTimer').textContent=qTimeLeft;
+  qTimer=setInterval(()=>{
+    qTimeLeft--;document.getElementById('qTimer').textContent=qTimeLeft;
+    if(qTimeLeft<=0){clearInterval(qTimer);if(!qAnswered)timeOut();}
+  },1000);
+}
+function timeOut(){
+  qAnswered=true;
+  const q=quizQuestions[qCurrent];
+  document.querySelectorAll('.quiz-opt').forEach((b,i)=>{b.disabled=true;if(i===q.correct)b.classList.add('correct');});
+  setTimeout(()=>{qCurrent++;if(qCurrent<quizQuestions.length)renderQuiz();else showQuizResult();},1500);
+}
+function answerQuiz(chosen,btn){
+  if(qAnswered)return;qAnswered=true;clearInterval(qTimer);
+  const q=quizQuestions[qCurrent];
+  document.querySelectorAll('.quiz-opt').forEach((b,i)=>{b.disabled=true;if(i===q.correct)b.classList.add('correct');});
+  if(chosen===q.correct){qScore++;btn.classList.add('correct');}
+  else btn.classList.add('wrong');
+  setTimeout(()=>{qCurrent++;if(qCurrent<quizQuestions.length)renderQuiz();else showQuizResult();},1500);
+}
+function showQuizResult(){
+  document.getElementById('quiz-game').style.display='none';
+  const result=document.getElementById('quiz-result');result.style.display='block';
+  const pct=Math.round(qScore/quizQuestions.length*100);
+  const circle=document.getElementById('qCircle');
+  circle.style.setProperty('--pct',pct+'%');circle.dataset.score=qScore+'/'+quizQuestions.length;
+  document.getElementById('qResTitle').textContent=pct>=80?'¡Excelente!':pct>=60?'¡Buen trabajo!':'Sigue practicando';
+  document.getElementById('qResMsg').textContent=`Obtuviste ${qScore} de ${quizQuestions.length} preguntas correctas (${pct}%). ${pct>=80?'¡Dominas el Enfoque Sistémico!':pct>=60?'Tienes buenas bases, repasa los conceptos que fallaste.':'Te recomiendo revisar los conceptos y ejercicios antes de intentarlo de nuevo.'}`;
+}
+function resetQuiz(){
+  qCurrent=0;qScore=0;clearInterval(qTimer);
+  document.getElementById('quiz-game').style.display='block';
+  document.getElementById('quiz-result').style.display='none';
+  renderQuiz();
+}
+renderQuiz();
+</script>
+</body>
+</html>
