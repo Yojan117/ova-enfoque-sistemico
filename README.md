@@ -23,9 +23,7 @@ Objeto Virtual de Aprendizaje (OVA) desarrollado como proyecto final de la asign
 
 ##  Demo en vivo
 
-> **[Ver OVA publicada →](https://TU-USUARIO.github.io/ova-enfoque-sistemico)**  
-> *(Reemplaza la URL con tu enlace real de GitHub Pages / Netlify / Vercel)*
-
+> **[Ver OVA publicada →][(https://TU-USUARIO.github.io/ova-enfoque-sistemico)](https://yojan117.github.io/ova-enfoque-sistemico/)**  
 ---
 
 ## Estructura del repositorio
